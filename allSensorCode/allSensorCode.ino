@@ -7,6 +7,7 @@ Adafruit_TMP117  tmp117;
 #include "DHT.h"
 
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
+#define offsetBodyTemp 6
 
 #define DHTPIN 2     // what pin we're connected to（DHT10 and DHT20 don't need define it）
 DHT dht(DHTPIN, DHTTYPE);   //   DHT11 DHT21 DHT22
@@ -66,7 +67,10 @@ void loop() {
   // read temp
   sensors_event_t temp; // create an empty event to be filled
   tmp117.getEvent(&temp); //fill the empty event object with the current measurements
-  Serial.print("Temperature:  "); Serial.print(temp.temperature);Serial.println(" degrees C");
+  Serial.print("Temperature:  ");
+  // float fdegrees = ((temp.temperature * 9) / 5) + 32; // testing var
+  Serial.print(((temp.temperature * 9) / 5) + 32 + offsetBodyTemp);
+  Serial.println(" degrees F");
   Serial.println("");
 
   // read GSR

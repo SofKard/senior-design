@@ -2,8 +2,8 @@
 #include <WiFiNINA.h>
 
 ///////please enter your sensitive data in the Secret tab/arduino_secrets.h
-char ssid[] = "SpectrumSetup-DA";        // your network SSID (name)
-char pass[] = "timbereagle704";    // your network password (use for WPA, or use as key for WEP)
+char ssid[] = "elise(:";        // your network SSID (name)
+char pass[] = "elisejohnson";    // your network password (use for WPA, or use as key for WEP)
 int keyIndex = 0;                 // your network key index number (needed only for WEP)
 
 int status = WL_IDLE_STATUS;

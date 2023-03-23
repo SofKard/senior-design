@@ -1,16 +1,26 @@
 import React, { useState} from 'react';
+import GaugeChart from 'react-gauge-chart';
+import { cubicBezier, Gauge } from 'gauge-chart-js';
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
 
-export default function App({ navigation}) {
+export default function App({ navigation }) {
     const [gsrVal, setGSRVal] = useState(0)
 
     const pullGSR = () => {
         setGSRVal(gsrVal+1)
       }
+
+    const gauge = new Gauge({
+      container: document.querySelector('.root'),
+      color: '#0f0'
+    });
+      
+    gauge.setValue(50);
+    
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => pullGSR()}>
-                <Image style={styles.sensorLevels1} source={require("../../assets/gsr.jpg")} />
+              <Image style={styles.sensorLevels1} source={require("../../assets/gsr.jpg")} />
             </TouchableOpacity>
         </View>
     ); // for risk pick pic based on warning level
@@ -131,3 +141,5 @@ const styles = StyleSheet.create({
     paddingLeft: 25
   }
 })
+
+// <GaugeChart id="gauge-chart2" nrOfLevels={20} percent={0.86} />

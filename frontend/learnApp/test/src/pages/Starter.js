@@ -5,22 +5,22 @@ export default function Starter( {navigation}) {
   const [currentStep, setCurrentStep] = useState(0)
   const [ steps, setSteps] = useState([
     {
-      image: require("../../assets/welcome.jpg"),
+      image: require("../../assets/3.png"),
       title: "Welcome!",
-      description: "This is XXX, a tool to help you monitor your heatstroke likelihood and dehydration levels. The next few pages will walk you through how to use the sensors attached for the best possible results."
+      description: "This is Heat Check, a tool to help you monitor your heatstroke likelihood and dehydration levels. The next two pages will show you our warning labels, so you can keep track of your risk levels at a given time."
     },
     {
-      image: require("../../assets/heartrate.jpg"),
-      title: "Heart Rate Sensor",
-      description: "The first sensor we will be using to measure your health is a heart rate sensor."
+      image: require("../../assets/2.png"),
+      title: "Low Risk Warning",
+      description: "This is the low risk warning. If you see this on your application, make sure to stay hydrated and take care of your body, but the sensors are not reporting any information to imply you were in immediate risk."
     },
     {
-      image: require("../../assets/gsr.jpg"),
-      title: "Galvanic Skin Response",
-      description: "This galvanic skin response sensor measures how much moisture is on your skin, or how sweaty you are."
+      image: require("../../assets/1.png"),
+      title: "High Risk Warning",
+      description: "This is the high risk warning. If you see this on your mobile application, take action. The device is reporting dangerous body levels, so drink some water and go inside and try to cool down."
     },
     {
-      image: require("../../assets/welcome.jpg"),
+      image: require("../../assets/3.png"),
       title: "Get Started",
       description: "Now that you have learned about our device, you are ready to start! The next page will ask for a few metrics to better fit the device to your body."
     }
