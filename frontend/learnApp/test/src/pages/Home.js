@@ -24,6 +24,11 @@ export default function App({ navigation}) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      <View  style={{width:"90%"}}>
+        <TouchableOpacity onPress={() => pullValues()}>
+          <Image style={styles.drawerIc} source={require("../../assets/welcome.jpg")} />
+        </TouchableOpacity>
+      </View>
       <View style={styles.header}>
         <View style={{flexDirection:"row"}}>
           <Image style={styles.headerIc} source={require("../../assets/avatar.jpg")} />
