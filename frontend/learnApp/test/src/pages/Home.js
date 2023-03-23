@@ -10,10 +10,10 @@ export default function App({ navigation}) {
       image: require("../../assets/welcome.jpg")
     },
     {
-      image: require("../../assets/heartrate.jpg")
+      image: require("../../assets/1.png")
     },
     {
-      image: require("../../assets/gsr.jpg")
+      image: require("../../assets/2.png")
     }
   ])
 
@@ -24,22 +24,17 @@ export default function App({ navigation}) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <View  style={{width:"90%"}}>
-        <TouchableOpacity onPress={() => pullValues()}>
-          <Image style={styles.drawerIc} source={require("../../assets/welcome.jpg")} />
-        </TouchableOpacity>
-      </View>
       <View style={styles.header}>
         <View style={{flexDirection:"row"}}>
-          <Image style={styles.headerIc} source={require("../../assets/gsr.jpg")} />
+          <Image style={styles.headerIc} source={require("../../assets/avatar.jpg")} />
           <View style={styles.headerInfo}>
-            <Text style={styles.headerWelcome}>hi!</Text>
-            <Text style={styles.headerProfile}>profile name?</Text>
+            <Text style={styles.headerWelcome}>Welcome!</Text>
+            <Text style={styles.headerProfile}>USER12345</Text>
           </View>
         </View>
       </View>
       <View style={{width:"90%"}}>
-        <Text style={styles.discoverTxt}>your risk:</Text>
+        <Text style={styles.discoverTxt}>risk level:</Text>
         <Image style={styles.riskImg} source={risk[currentRisk].image} /> 
       </View>
       <View style={styles.destinationsView}>
