@@ -74,14 +74,14 @@ const styles = StyleSheet.create({
     height:35
   },
   headerIc:{
-    width:50,
-    height:50,
+    width:60,
+    height:60,
     marginRight:10
   },
   riskImg:{
     width:373,
-    height:300,
-    marginBottom:30,
+    height:350,
+    marginBottom:10,
     borderTopRightRadius: 50,
     borderTopLeftRadius: 50,
     borderBottomLeftRadius: 50,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     fontWeight:"bold",
     fontSize: 28,
     color:"white",
-    marginBottom:30
+    marginBottom:10
   },
   destinationsView:{
     backgroundColor:"white",

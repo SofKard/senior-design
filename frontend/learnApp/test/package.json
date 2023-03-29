@@ -12,6 +12,7 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.6",
+    "@react-native-firebase/app": "^17.4.0",
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/stack": "^6.3.11",
     "axios": "^1.2.6",
@@ -22,7 +23,9 @@
     "react": "18.1.0",
     "react-gauge-chart": "^0.4.1",
     "react-native": "0.70.5",
-    "use-gauge": "^0.5.0"
+    "use-gauge": "^0.5.0",
+    "react-native-web": "~0.18.9",
+    "@expo/webpack-config": "^0.17.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
