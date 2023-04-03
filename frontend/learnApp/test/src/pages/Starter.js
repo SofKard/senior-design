@@ -22,7 +22,7 @@ export default function Starter( {navigation}) {
     {
       image: require("../../assets/3.png"),
       title: "Get Started",
-      description: "Now that you have learned about our device, you are ready to start! The next page will ask for a few metrics to better fit the device to your body."
+      description: "Now that you have learned about our device, you are ready to start!"
     }
   ])
   const nextStep = () => {
@@ -122,50 +122,6 @@ const styles = StyleSheet.create({
   navigationBtnTxt: {
     color: "white",
     fontWeight: "bold"
-  },
-  drawerIc: {
-    width: 35,
-    height:35
-  },
-  headerIc:{
-    width:50,
-    height:50,
-    marginRight:10
-  },
-  header:{
-    flexDirection:"row",
-    marginTop:10,
-    justifyContent:"space-between",
-    width:"90%",
-    marginBottom:25
-  },
-  headerInfo:{
-    justifyContent:"center",
-  },
-  headerWelcome:{
-    color:"white",
-    fontFamily:"Rubik_400Regular",    
-  },
-  headerProfile:{
-    color:"white",
-    fontFamily:"Rubik_700Bold",    
-    fontSize: 16
-  },
-  inputView:{
-    backgroundColor:"white",
-    width:"90%",
-    height:50,
-    borderRadius:25,
-    justifyContent:"center",
-    alignItems:"center",
-    flexDirection:"row",
-    marginBottom: 25
-  },
-  input: {
-    width:"80%",
-    height:45,
-    marginLeft:10,
-    fontSize:20,
   }
 });
 

@@ -2,20 +2,44 @@ import { NavigationHelpersContext } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/database';
 
 export default function HeartRate({ navigation}) {
-    const [heartVal, setHRVal] = useState(0)
+    const [hrVal, setHRVal] = useState(0)
+    const [currentRisk, setCurrentRisk] = useState(1)
+    const [ risk, setRisk] = useState([
+      {
+        image: require("../../assets/1.png")
+      },
+      {
+        image: require("../../assets/2.png")
+      }
+    ])
 
     const pullHR = () => {
-        setHRVal(heartVal+1)
-      }
+      firebase.database().ref('/').once('value')
+      .then(snapshot => {
+
+      setHRVal(snapshot.child("heartRate").val());
+
+      snapshot.child("heartRate").val() > 150 ? setCurrentRisk(0) : setCurrentRisk(1);
+
+      }).catch(error => {
+
+      console.error(error);
+    
+      });
+
+    }
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={() => pullHR()}>
-                <Image style={styles.header} source={require("../../assets/heartrate.jpg")} />
+                <Image style={styles.sensorLevels1} source={require("../../assets/refresh.png")} />
+                <Image style={styles.riskImg} source={risk[currentRisk].image} /> 
             </TouchableOpacity>
             <Text style={styles.value}>
-                {heartVal}
+                Heart Rate: {hrVal}
             </Text>
         </View>
     ); // for risk pick pic based on warning level
@@ -28,23 +52,28 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: primaryColor,
     alignItems: 'center',
-    paddingTop:80
+    paddingTop:40
   },
-  header:{
-    backgroundColor:"white",
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
+  sensorLevels1:{
     position:'absolute',
-    marginLeft:5,
-    width:160,
-    height:160,
+    marginLeft:320,
+    width:50,
+    height:50,
   },
   value:{
     fontWeight:"bold",
     fontSize: 50,
     color:"white",
-    marginTop:400
+    alignItems: 'center',
+    marginTop:150
+  },
+  riskImg:{
+    width:373,
+    height:350,
+    marginTop: 100,
+    borderTopRightRadius: 50,
+    borderTopLeftRadius: 50,
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
   }
 })

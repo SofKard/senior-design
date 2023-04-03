@@ -2,13 +2,12 @@ import { NavigationHelpersContext } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState} from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput } from 'react-native';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/database';
 
 export default function App({ navigation}) {
-  const [currentRisk, setCurrentRisk] = useState(0)
+  const [currentRisk, setCurrentRisk] = useState(1)
   const [ risk, setRisk] = useState([
-    {
-      image: require("../../assets/welcome.jpg")
-    },
     {
       image: require("../../assets/1.png")
     },
@@ -18,7 +17,20 @@ export default function App({ navigation}) {
   ])
 
   const pullValues = () => {
-    setCurrentRisk((currentRisk+1)%3) // edit 3 here to change how many there are
+    firebase.database().ref('/').once('value')
+    .then(snapshot => {
+
+    console.log(snapshot.child("danger").val());
+
+    snapshot.child("danger").val() == true ? setCurrentRisk(0) : setCurrentRisk(1);
+
+    // do something with the data
+    }).catch(error => {
+
+    console.error(error);
+  
+    });
+
   }
 
   return (
@@ -26,12 +38,12 @@ export default function App({ navigation}) {
       <StatusBar style="auto" />
       <View  style={{width:"90%"}}>
         <TouchableOpacity onPress={() => pullValues()}>
-          <Image style={styles.drawerIc} source={require("../../assets/welcome.jpg")} />
+          <Image style={styles.refresh} source={require("../../assets/refresh.png")} />
         </TouchableOpacity>
       </View>
       <View style={styles.header}>
         <View style={{flexDirection:"row"}}>
-          <Image style={styles.headerIc} source={require("../../assets/avatar.jpg")} />
+          <Image style={styles.avatar} source={require("../../assets/avatar.jpg")} />
           <View style={styles.headerInfo}>
             <Text style={styles.headerWelcome}>Welcome!</Text>
             <Text style={styles.headerProfile}>USER12345</Text>
@@ -73,10 +85,14 @@ const styles = StyleSheet.create({
     width: 35,
     height:35
   },
-  headerIc:{
+  avatar:{
     width:60,
     height:60,
-    marginRight:10
+    marginRight:10,
+    borderTopRightRadius: 50,
+    borderTopLeftRadius: 50,
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
   },
   riskImg:{
     width:373,
@@ -99,11 +115,9 @@ const styles = StyleSheet.create({
   },
   headerWelcome:{
     color:"white",
-    fontFamily:"Rubik_400Regular",    
   },
   headerProfile:{
     color:"white",
-    fontFamily:"Rubik_700Bold",    
     fontSize: 16
   },
   inputView:{
@@ -123,7 +137,6 @@ const styles = StyleSheet.create({
     fontSize:20,
   },
   discoverTxt: {
-    fontFamily:"Rubik_700Bold",
     fontWeight:"bold",
     fontSize: 28,
     color:"white",
@@ -171,11 +184,17 @@ const styles = StyleSheet.create({
     marginLeft:245,
   },
   destinationsTxt:{
-    fontFamily:"Rubik_500Medium",    
     fontSize: 18,
     color:"#B4ADC6",
     fontWeight:"bold",
     marginVertical:10,
     paddingLeft: 25
+  },
+  refresh:{
+    position:'absolute',
+    marginLeft:300,
+    backgroundColor: primaryColor,
+    width:75,
+    height:75,
   }
 })

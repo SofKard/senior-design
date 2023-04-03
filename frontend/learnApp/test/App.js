@@ -5,11 +5,27 @@ import Home from "./src/pages/Home";
 import GSR from "./src/pages/GSR";
 import HeartRate from "./src/pages/HeartRate";
 import BodyTemp from "./src/pages/BodyTemp";
-import Starter from "./src/pages/Starter"
+import Starter from "./src/pages/Starter";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/database';
+
 
 const Stack = createStackNavigator();
 
 export default function App() {
+  const firebaseConfig = {
+    apiKey: "AIzaSyCEg3-OzQXBT6dquGlZyxkgnyibokZTTBQ",
+    authDomain: "senior-design-eba4c.firebaseapp.com",
+    databaseURL: "https://senior-design-eba4c-default-rtdb.firebaseio.com",
+    projectId: "senior-design-eba4c",
+    storageBucket: "senior-design-eba4c.appspot.com",
+    messagingSenderId: "415664524416",
+    appId: "1:415664524416:web:6eda87601e117b6185ea65",
+    measurementId: "G-MJE0YZV3JM"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Starter">
