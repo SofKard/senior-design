@@ -55,15 +55,15 @@ export default function App({ navigation}) {
         <Image style={styles.riskImg} source={risk[currentRisk].image} /> 
       </View>
       <View style={styles.destinationsView}>
-        <Text style={styles.destinationsTxt}>Check Levels</Text>
+        <Text style={styles.destinationsTxt}>Check Levels:</Text>
         <TouchableOpacity onPress={() => navigation.navigate('GSR')}>
-          <Image style={styles.sensorLevels1} source={require("../../assets/heartrate.jpg")} />
+          <Image style={styles.sensorLevels1} source={require("../../assets/7.png")} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('HeartRate')}>
-          <Image style={styles.sensorLevels2} source={require("../../assets/heartrate.jpg")} />
+          <Image style={styles.sensorLevels2} source={require("../../assets/6.png")} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('BodyTemp')}>
-          <Image style={styles.sensorLevels3} source={require("../../assets/heartrate.jpg")} />
+          <Image style={styles.sensorLevels3} source={require("../../assets/4.png")} />
         </TouchableOpacity>
       </View>
       
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     marginBottom:10
   },
   destinationsView:{
-    backgroundColor:"white",
+    backgroundColor: '#D7B4F3',
     borderTopRightRadius: 50,
     borderTopLeftRadius: 50,
     width:"100%",
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   },
   destinationsTxt:{
     fontSize: 18,
-    color:"#B4ADC6",
+    color:"black",
     fontWeight:"bold",
     marginVertical:10,
     paddingLeft: 25

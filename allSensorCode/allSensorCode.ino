@@ -1,13 +1,18 @@
 #include <Wire.h>
 #include <Adafruit_TMP117.h>
 #include <Adafruit_Sensor.h>
+#include "MBED_RP2040_PWM.h"
+
+mbed::PwmOut* pwm   = NULL;
 
 Adafruit_TMP117  tmp117;
+
+#define pwmpin 16
 
 #include "DHT.h"
 
 #define DHTTYPE DHT22   // DHT 22  (AM2302)
-#define offsetBodyTemp 6
+#define offsetBodyTemp 21
 
 #define DHTPIN 2     // what pin we're connected to（DHT10 and DHT20 don't need define it）
 DHT dht(DHTPIN, DHTTYPE);   //   DHT11 DHT21 DHT22
@@ -51,18 +56,21 @@ void setup() {
 
   // start GSR
 
+  // setup pwm for alarm
+  digitalWrite(pwmpin, OUTPUT);
+
 }
 
 void loop() {
 
   // read heartrate
+  unsigned char c;
   Wire.requestFrom(0xA0 >> 1, 1);    // request 1 bytes from slave device
   while(Wire.available()) {          // slave may send less than requested
-    unsigned char c = Wire.read();   // receive heart rate value (a byte)
+    c = Wire.read();   // receive heart rate value (a byte)
     Serial.print("heart rate: ");
     Serial.println(c, DEC);         // print heart rate value
   }
-  delay(500);
 
   // read temp
   sensors_event_t temp; // create an empty event to be filled
@@ -98,7 +106,33 @@ void loop() {
     debug.println("not working :(");
   }
 
-  // delayyyyyyyy
-  delay(1500);
+  // insert check danger function
+  bool risk = danger(temp_hum_val[1],gsr_average, ((temp.temperature * 9) / 5) + 32 + offsetBodyTemp, c);
 
+  if(risk){
+    // set off alarm
+    setPWM(pwm, pwmpin, 400, 50);
+    Serial.println("working");
+  }else{
+    // turn off alarm
+    stopPWM(pwm, pwmpin);
+    Serial.println("not working");
+  }
+
+  // insert store in database
+  database(temp_hum_val[1],gsr_average, ((temp.temperature * 9) / 5) + 32 + offsetBodyTemp, c, risk);
+
+  // delayyyyyyyy
+  delay(500);
+
+}
+
+bool danger(float outTemp, long gsr, long bodyTemp, unsigned char heartRate){
+  // check if user is at risk!
+  return 1;
+}
+
+
+void database(float outTemp, long gsr, long bodyTemp, unsigned char heartRate, bool risk){
+  // store in database
 }
